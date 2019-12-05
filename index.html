@@ -1,13 +1,70 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>100件事</title>
-  <!-- 0未开始  1进行中  2已完成 -->
+  <script src="jquery.min.js"></script>
+  <script src="handlebars.min.js"></script>
+  <script src="data.js"></script>
+  <style>
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: pink;
+    }
+
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #content{
+      padding: 1px;
+    }
+    /* #content . */
+  </style>
+  <script>
+    console.log(data)
+  </script>
+  <script type="text/template" id="myTemplate">
+    <div class="demo">
+        <h1>{{name}}</h1>
+        <p>{{content}}</p>
+    </div>
+  </script>
 </head>
+
 <body>
-  100件事
+  <!-- <div class="loading">
+    <img src="loading.gif" alt="">
+  </div> -->
+  <div id="content">
+
+  </div>
+
+  <script>
+    var tpl = $("#myTemplate").html();
+    var template = Handlebars.compile(tpl);
+    var html = ''
+    data.forEach((item) => {
+      html += template(item);
+    })
+    $('#content').html(html);
+  </script>
 </body>
+
 </html>
